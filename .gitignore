@@ -1,6 +1,5 @@
-# See https://www.dartlang.org/guides/libraries/private-files
-
-# Files and directories created by pub
+# https://dart.dev/guides/libraries/private-files
+# Created by `dart pub`
 .dart_tool/
 .packages
 build/
@@ -27,3 +26,5 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+*.iml
+.idea
