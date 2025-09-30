@@ -38,4 +38,13 @@ class Expense {
     """;
 
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "id": this._id,
+      "amount": this._amount,
+      "description": this._description,
+      "dueDate": this._dueDate
+    };
+  }
 }

@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_expense_tracker/expense.dart';
@@ -106,7 +107,22 @@ void updateExpense() {
 }
 
 void saveExpenses() {
-  print("Expenses saved!");
+  if (expenses.isEmpty) {
+    print("No expenses to save!");
+    return;
+  }
+
+  final File fileSink = File("expenses.json");
+
+  const JsonEncoder jsonEncoder = JsonEncoder.withIndent("  ");
+  List<Expense> expensesToWrite = expenses.values.toList();
+  final String jsonString = jsonEncoder.convert(expensesToWrite);
+
+  print(jsonString);
+  fileSink.writeAsStringSync(jsonString);
+
+  print("Expenses Saved!");
+
 }
 
 void addExpense() {
