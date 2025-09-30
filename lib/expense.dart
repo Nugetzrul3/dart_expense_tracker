@@ -47,4 +47,13 @@ class Expense {
       "dueDate": this._dueDate
     };
   }
+
+  factory Expense.fromJson(Map<String, dynamic> json) {
+    return Expense(
+      json['id'] as int,
+      json['amount'] as double,
+      json['description'] as String,
+      json['dueDate'] as String
+    );
+  }
 }

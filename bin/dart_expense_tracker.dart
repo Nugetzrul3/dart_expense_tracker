@@ -3,12 +3,27 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_expense_tracker/expense.dart';
-import 'package:dart_expense_tracker/utils.dart';
 
 // Store expenses in list on memory
 HashMap<int, Expense> expenses = HashMap();
 
 void main() {
+  // First, attempt to load expenses
+  File file = File("expenses.json");
+
+  if (file.existsSync()) {
+    String contents = file.readAsStringSync();
+    JsonDecoder decoder = JsonDecoder();
+    
+    List<Expense> readExpenses = (decoder.convert(contents) as List<dynamic>)
+        .map((element) => Expense.fromJson(element)).toList();
+
+    for (final expense in readExpenses) {
+      expenses[expense.id] = expense;
+    }
+    
+  }
+
   printOptions();
   String? optionChosen;
 
